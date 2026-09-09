@@ -44,12 +44,29 @@ def to_status(devices):
                 status = "ok"
             else: status = "offline"
             celcius = device["temp"]
-    new_object = {
-        "device" : name,
-        "status" : status,
-        "celcius" : celcius
-    }
+    new_object = {"device" : name, "status" : status, "celcius" : celcius}
     print(new_object)
 
 to_status(readings)
+
+def by_room(devices):
+    hall_list = []
+    attic_list = []
+    kitchen_list = []
+    outside_list = []
+
+    for device in devices:
+        if device["room"] == "hall":
+            hall_list.append(device["name"])
+        elif device["room"] == "attic":
+            attic_list.append(device["name"])
+        elif device["room"] == "kitchen":
+            kitchen_list.append(device["name"])
+        elif device["room"] == "outside":
+            outside_list.append(device["name"])
+    by_room_list = {"hall" : hall_list, "attic" : attic_list, "kitchen" : kitchen_list, "outside" : outside_list,}
+    print(by_room_list)
+        
+by_room(readings)
+
         
