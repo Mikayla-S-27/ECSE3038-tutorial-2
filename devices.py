@@ -3,5 +3,11 @@ readings = [
     {"name": "hall-lamp",  "room": "hall",    "temp": 26.1, "online": True},
     {"name": "attic",      "room": "attic",   "temp": 31.9, "online": True},
     {"name": "fridge",     "room": "kitchen", "temp": 4.2,  "online": False},
-    {"name": "patio",      "room": "outside", "temp": 29.8, "online": True},
+    {"name": "patio",      "room": "outside", "temp": 29.8, "online": True}
 ]
+
+def list_devices(devices):
+    for device in devices:
+        print(device["name"] + " temp is: " + str(device["temp"]))
+
+print(list_devices(readings))
