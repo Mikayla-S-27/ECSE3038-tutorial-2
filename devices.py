@@ -10,7 +10,7 @@ def list_devices(devices):
     for device in devices:
         print(device["name"] + " temp is: " + str(device["temp"]))
 
-print(list_devices(readings))
+list_devices(readings)
 
 def average_temp(devices):
     temp_sum = 0
@@ -18,6 +18,18 @@ def average_temp(devices):
     for device in devices:
         temp_sum += device["temp"]
         count += 1
-    return temp_sum / count if count > 0 else 0
+    return temp_sum / count
 
 print(average_temp(readings))
+
+def hottest(devices):
+    max_temp = 0
+    for device in devices:
+        if device["temp"] > max_temp:
+            max_temp = device["temp"]
+    for device in devices:
+        if device["temp"] == max_temp:
+            print(device)
+
+hottest(readings)
+        
