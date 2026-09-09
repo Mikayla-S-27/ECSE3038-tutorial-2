@@ -12,6 +12,7 @@ def list_devices(devices):
 
 list_devices(readings)
 
+
 def average_temp(devices):
     temp_sum = 0
     count = 0
@@ -21,6 +22,7 @@ def average_temp(devices):
     return temp_sum / count
 
 print(average_temp(readings))
+
 
 def hottest(devices):
     max_temp = 0
@@ -32,4 +34,22 @@ def hottest(devices):
             print(device)
 
 hottest(readings)
+
+
+def to_status(devices):
+    for device in devices:
+        if device["name"] == "fridge":
+            name = device["name"]
+            if device["online"] == True:
+                status = "ok"
+            else: status = "offline"
+            celcius = device["temp"]
+    new_object = {
+        "device" : name,
+        "status" : status,
+        "celcius" : celcius
+    }
+    print(new_object)
+
+to_status(readings)
         
