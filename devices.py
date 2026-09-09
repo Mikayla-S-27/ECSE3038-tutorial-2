@@ -11,3 +11,13 @@ def list_devices(devices):
         print(device["name"] + " temp is: " + str(device["temp"]))
 
 print(list_devices(readings))
+
+def average_temp(devices):
+    temp_sum = 0
+    count = 0
+    for device in devices:
+        temp_sum += device["temp"]
+        count += 1
+    return temp_sum / count if count > 0 else 0
+
+print(average_temp(readings))
