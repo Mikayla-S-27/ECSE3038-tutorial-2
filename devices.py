@@ -8,7 +8,7 @@ readings = [
 
 def list_devices(devices):
     for device in devices:
-        print(device["name"] + " temp is: " + str(device["temp"]))
+        print(device["name"] , device["temp"])
 
 list_devices(readings)
 
@@ -25,48 +25,33 @@ print(average_temp(readings))
 
 
 def hottest(devices):
-    max_temp = 0
+    hot = devices[0]
     for device in devices:
-        if device["temp"] > max_temp:
-            max_temp = device["temp"]
-    for device in devices:
-        if device["temp"] == max_temp:
-            print(device)
+        if device["temp"] > hot["temp"]:
+            hot = device
+    return hot
 
-hottest(readings)
+print (hottest(readings))
 
 
-def to_status(devices):
-    for device in devices:
-        if device["name"] == "fridge":
-            name = device["name"]
-            if device["online"] == True:
-                status = "ok"
-            else: status = "offline"
-            celcius = device["temp"]
-    new_object = {"device" : name, "status" : status, "celcius" : celcius}
-    print(new_object)
+def to_status(device):
+    if device["online"]:
+        status = "ok"
+    else:
+        status = "offline"
+    return {"device": device["name"], "status": status, "celsius": device["temp"]}
 
-to_status(readings)
+print(to_status(readings[3]))
 
 def by_room(devices):
-    hall_list = []
-    attic_list = []
-    kitchen_list = []
-    outside_list = []
-
+    rooms = {}
     for device in devices:
-        if device["room"] == "hall":
-            hall_list.append(device["name"])
-        elif device["room"] == "attic":
-            attic_list.append(device["name"])
-        elif device["room"] == "kitchen":
-            kitchen_list.append(device["name"])
-        elif device["room"] == "outside":
-            outside_list.append(device["name"])
-    by_room_list = {"hall" : hall_list, "attic" : attic_list, "kitchen" : kitchen_list, "outside" : outside_list,}
-    print(by_room_list)
+        room = device["room"]
+        if room not in rooms:
+            rooms[room] = []
+        rooms[room].append(device["name"])
+    return rooms
         
-by_room(readings)
+print (by_room(readings))
 
         
